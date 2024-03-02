@@ -1,0 +1,33 @@
+<section class="container card" post_id="{{post.id}}">
+  <div class = "row" id="card-heading">
+    <div class="col-md" >
+        <p id="post-title">Title: {{post.title}}</p>
+    </div>
+    <div class="col-auto">
+        <p>Posted by {{user.dataValues.username}} on {{formatDate post.posted_date}}</p>
+    </div>
+  </div>
+
+  <div class = "row">
+      <p>{{post.body}}</p>
+  </div>
+</section>
+{{#each post.comments as |comment|}}
+  <div class="col-md card">
+  </div>
+  <div class="col-md">
+      <p>{{comment}}</p>
+  </div>
+{{/each}}
+{{#if loggedIn}}
+<section class="container">
+  <div class = "row">
+    <label for="content" class="comment-label">Comment</label>
+    <input type="text" class="form-input" id="comment-body">
+  </div>
+  <div class = "row">
+    <button type="submit" class="btn btn-primary" id="submit-comment">Submit</button>
+  </div>
+{{/if}}
+</section>
+<script src=""></script>
