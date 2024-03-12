@@ -6,11 +6,11 @@ The task is to build a CMS-style blog site similar to a Wordpress site, where de
 
 ## Demo
 
+<a href="">Tech Blog Demo Vid</a>
+
+## Installation
 
 
-## Site Link
-
-<a href="">Deployed Site</a>
 
 ## Usage
 
@@ -91,3 +91,7 @@ THEN I am signed out of the site
 WHEN I am idle on the site for more than a set time
 
 THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
+
+## Contact Me
+
+Email: [devinjl665@gmail.com](mailto:devinjl665@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
