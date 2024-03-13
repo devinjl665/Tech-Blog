@@ -39,13 +39,13 @@ router.put('/:id', withAuth, async (req, res) => {
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.destroy({
-          where: { postId: req.params.id },
+          where: { post_id: req.params.id },
       });
 
     const postData = await Post.destroy({
       where: {
         id: req.params.id,
-        userId: req.session.userId,
+        user_id: req.session.userId,
       },
     });
     if (!postData) {

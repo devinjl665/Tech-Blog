@@ -9,7 +9,7 @@ const editHandler = async (event) => {
     const response = await fetch(`/api/post/${id}`, {
         method: 'PUT',
         body: JSON.stringify({
-            postId: id,
+            post_id: id,
             title,
             content,
         }),
