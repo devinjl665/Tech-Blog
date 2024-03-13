@@ -1,27 +1,29 @@
-const addComment = async (event) => {
+const postId = document.querySelector('input[name="post-id"]').value;
 
+const commentFormHandler = async (event) => {
     event.preventDefault();
-    
-    const id = document.querySelector("section").getAttribute('post_id');
-    const content = document.querySelector('#comment-body').value.trim();
-    
-    if(content){
-      const response = await fetch(`/api/bpr/add-comment/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ content, id }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      
-      if (response.ok) {
-        document.location.replace(`/post/${id}`);
-      } else {
-        alert(response.statusText);
-      }
-    }  
-    }
+    const comment = document.querySelector('textarea[name="comment-body"]').value.trim();
+    console.log(comment);
 
-if(document.querySelector('#submit-comment') != null){
-  document
-    .querySelector('#submit-comment')
-    .addEventListener('click', addComment); 
+    if (comment) {
+        const response = await fetch('/api/comment', {
+            method: 'POST',
+            body: JSON.stringify({
+                comment: comment,
+                postId: postId,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert(response.statusText);
+        }
+    };
+} 
+
+if(document.querySelector('.comment-form') !=null) {  
+    document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
 }
