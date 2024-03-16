@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
           where: { id: req.params.id },
       });
       if (commentData.length === 0) {
-          res.status(404).json({ message: `The id ${req.params.id} has no comment.` });
+          res.status(404).json({ message: `The id ${req.params.id} has no comments.` });
           return;
       }
       res.status(200).json(commentData);
