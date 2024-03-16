@@ -16,7 +16,7 @@ const loginForm = async (event) => {
     if (response.ok) {
         document.location.replace('/dashboard'); 
     } else {
-        alert('Something wrong!')
+        alert('Invalid login information')
     }
 };
 
