@@ -68,7 +68,7 @@ router.get('/post/:id', async (req, res) => {
         console.log(post);
         res.render('single-post', { post, loggedIn: req.session.loggedIn, username: req.session.username, })  
     } else {
-        res.status(404).json({ message: "No post found with this id..."});
+        res.status(404).json({ message: 'No post found with this id...'});
         return;
     }
   } catch (err) {
