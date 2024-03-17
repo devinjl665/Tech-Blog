@@ -29,12 +29,12 @@ Post.init(
             },
         },
         created_at: {
-            type: DataTypes.DATETIME,
+            type: DataTypes.DATE,
             allowNull: false,
         },
         updated_at: {
-            type: DataTypes.DATETIME,
-            allowNull: allowNull,
+            type: DataTypes.DATE,
+            allowNull: false,
         },
     },
     {
@@ -42,7 +42,7 @@ Post.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post',
+        modelName: `post`,
     }
 );
 
