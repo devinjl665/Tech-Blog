@@ -18,7 +18,7 @@ Post.init(
             allowNull: false,
         },
         content: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         user_id: {
@@ -27,6 +27,14 @@ Post.init(
                 model: 'user',
                 key: 'id',
             },
+        },
+        created_at: {
+            type: DataTypes.DATETIME,
+            allowNull: false,
+        },
+        updated_at: {
+            type: DataTypes.DATETIME,
+            allowNull: allowNull,
         },
     },
     {
