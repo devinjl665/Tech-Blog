@@ -1,21 +1,60 @@
-<div class="card flex-column">
-    <h2 class="card-header">Login</h2>
-    <form id="login-form" class="card-body">
-        <div class="mb-6">
-            <label for="username-login" class="form-label">Username</label>
-            <input placeholder="Enter username" type="username" class="form-control" id="username-login">
-        </div>
+<div class="row justify-content-md-center">
+    <div class="container col-md-1"></div>
+    <div class="container col-md-5">
+        <h2>Login</h2>
+        <form class="form-horizontal loginForm">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email-login">Email:</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" id="email-login" placeholder="Enter your email...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password-login">Password:</label>
+                <div class="col-sm-10">
+                <input type="password" class="form-control" id="password-login" placeholder="Enter your password...">
+                </div>
+            </div>
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
-        <div class="mb-6">
-            <label for="password-login" class="form-label">Password</label>
-            <input placeholder="Enter password" type="password" class="form-control" id="password-login">
-        </div>
-
-        <div class="mb-6">
-            <a href="/signup">Don't have an account? Signup</a>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="login-btn">Login</button>
-    </form>
+    <div class="container col-md-5">
+        <h2>Sign Up</h2>
+        <form class="form-horizontal signupForm">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name-signup">Username:</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" id="name-signup" placeholder="Enter your username...">
+            </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email-signup">Email:</label>
+                <div class="col-sm-10">
+                <input type="email" class="form-control" id="email-signup" placeholder="Enter your email...">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password-signup">Password:</label>
+                <div class="col-sm-10">
+                <input type="password" class="form-control" id="password-signup" placeholder="Enter your password...">
+                </div>
+            </div>
+            <div class="form-group">
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<script src="js/login.js"></script>
+
+<script src="./js/login.js"></script>

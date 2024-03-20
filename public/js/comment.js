@@ -1,29 +1,31 @@
-const postId = document.querySelector('input[name="post-id"]').value;
-
 const commentFormHandler = async (event) => {
     event.preventDefault();
-    const comment = document.querySelector('textarea[name="comment-body"]').value.trim();
-    console.log(comment);
 
-    if (comment) {
-        const response = await fetch('/api/comment', {
+    const comment = document.querySelector('#commentContent').value.trim();
+    
+    const content = textContent.value.trim();
+    const postId = textContent.getAttribute();
+
+    const bodyObject = {
+        content: content,
+        postId: postId
+    };
+
+    if (content) {
+        const response = await fetch('/api/posts/comment', {
             method: 'POST',
-            body: JSON.stringify({
-                comment: comment,
-                post_id: postId,
-            }),
+            body: JSON.stringify({ bodyObject }),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
         if (response.ok) {
-            document.location.reload();
+            document.location.replace(`/post/${postId}`);
         } else {
-            alert(response.statusText);
+            alert('Post could not be created');
         }
-    };
-} 
+    }
+};
 
-if(document.querySelector('.comment-form') !=null) {  
-    document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
-}
+document.querySelector('.commentForm')
+    .addEventListener('submit', commentFormHandler);

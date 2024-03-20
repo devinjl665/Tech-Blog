@@ -1,94 +1,88 @@
 const router = require('express').Router();
-const { User, Post, Comment } = require('../models');
-const sequelize = require('../config/connection');
+const { Comment, User, Blog } = require('../models');
+const withAuth = require('../utils/auth');
 
-// Get all posts
 router.get('/', async (req, res) => {
-  try {
-    
-    const blogPostData = await Post.findAll({
-      attributes: ['id', 'content', 'title', 'created_at'],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
-          include: {
-              model: User,
-              attributes: ['username'],
-          },
-        },
-        {
-          model: User,
-          attributes: ['username']
-        }
-      ],
-      order: [['created_at', 'DESC']],  
-    })
-
-    const posts = blogPostData.map((post) =>
-      post.get({ plain: true })
-    );
-    console.log(posts)
-
-    res.render('homepage', {
-      posts,
-      loggedIn: req.session.loggedIn,
-      username: req.session.username,
-      user_id: req.session.user_id });
-
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// Get a single post
-router.get('/post/:id', async (req, res) => {
-  try {
-        const blogPostData = await Post.findOne({
-            where: {id: req.params.id},
-            attributes: ['id', 'content', 'title', 'created_at'],
+    try {
+        const blogData = await Blog.findAll({
             include: [
                 {
-                  model: Comment,
-                  attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
-                  include: {
-                  model: User,
-                  attributes: ['username'],
+                    model: User,
+                    attributes: ['username'],
                 },
-              },
-              {
-                model: User,
-                attributes: ['username'],
-              },
-          ],
-      });
-      if (blogPostData) {
-        const post = blogPostData.get({ plain: true });
-        console.log(post);
-        res.render('single-post', { post, loggedIn: req.session.loggedIn, username: req.session.username, })  
-    } else {
-        res.status(404).json({ message: 'No post found with this id...'});
-        return;
+            ],
+        });
+
+        const blogs = blogData.map((blog) => blog.get({ plain: true }));
+
+        res.render('homepage', {
+            blogs,
+            logged_in: req.session.logged_in
+        });
+    } catch (err){
+        res.json(500).json(err);
     }
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
+router.get('/blog/:id', async (req, res) => {
+    try {
+        const blogData = await Blog.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                },
+            ],
+        });
+
+        const blog = blogData.get({ plain: true });
+
+        const commentData = await Comment.findAll({
+            where: { blog_id : blog.id},
+            include: [{
+                model: User,
+                attributes: ['username']
+            }],
+        });
+
+        const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+        res.render('blog', {
+            ...blog,
+            comments,
+            logged_in: req.session.logged_in,
+            logged_in_userId: req.session.user_id
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/dashboard', withAuth, async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password']},
+            include: [{ model: Blog }],
+        });
+
+        const user = userData.get({ plain: true });
+
+        res.render('dashboard', {
+            ...user,
+            logged_in: true
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 router.get('/login', (req, res) => {
-  if(req.session.loggedIn){
-    res.redirect('/')
-    return;
-  }
-  res.render('login');
-  });
+    if (req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
+    }
 
-
-router.get('/signup', (req, res) => {
-    res.render('signup');
-  });
-
+    res.render('login');
+});
 
 module.exports = router;

@@ -1,25 +1,28 @@
-const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
-
-// Click on edit post
 const editHandler = async (event) => {
-    event.preventDefault();
-    const title = document.querySelector('input[name="post-title"]').value;
-    const content = document.querySelector('textarea[name="post-content"]').value;
+    const id = event.target.getAttribute('postId');
+    const title = document.querySelector('#editBlogTitle').value.trim();
+    const content = document.querySelector('#editBlogContent').value.trim();
 
-    const response = await fetch(`/api/post/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-            post_id: id,
-            title,
-            content,
-        }),
-        headers: {'Content-Type': 'application/json'},
-    });
-    if (response.ok) {
-        document.location.replace('/dashboard/');
-    } else {
-        alert("Something wrong!");
+    const postObject = {
+        content: content,
+        postId: id,
+        postTitle: title
+    };
+
+    if (content && id && title) {
+        const response = await fetch('/api/post/update', {
+            method: 'PUT',
+            body: JSON.stringify({ postObject }),
+            headers: {'Content-Type': 'application/json'},
+        });
+        if (response.ok) {
+            document.location.replace(`/post/${id}`);
+        } else {
+            alert("Unable to post!");
+        }
     }
 };
 
-document.querySelector('.edit-form').addEventListener('submit', editHandler);
+document
+    .querySelector('.editButt')
+    .addEventListener('click', editHandler);
