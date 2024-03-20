@@ -15,7 +15,7 @@ const newpostFormHandler = async (event) => {
     if (response.ok) {
         document.location.replace('/dashboard');
     } else {
-        alert('Something wrong!');
+        alert('Could not add post!');
     }
 };
 

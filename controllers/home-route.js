@@ -6,7 +6,7 @@ const sequelize = require('../config/connection');
 router.get('/', async (req, res) => {
   try {
     
-    const dbPostData = await Post.findAll({
+    const blogPostData = await Post.findAll({
       attributes: ['id', 'content', 'title', 'created_at'],
       include: [
         {
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
       order: [['created_at', 'DESC']],  
     })
 
-    const posts = dbPostData.map((post) =>
+    const posts = blogPostData.map((post) =>
       post.get({ plain: true })
     );
     console.log(posts)
