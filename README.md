@@ -10,15 +10,15 @@ The task is to build a CMS-style blog site similar to a Wordpress site, where de
 
 ## Installation
 
-
+Copy repo and enter `npm install` in your code editor's terminal to install any necessary dependencies. Run the command `npm start` to start the application locally.
 
 ## Usage
 
-
+Once navigating to the localhost, you will be met by the homepage where you can see all the posts on the website. If you try to leave a comment or navigated to the dashboard, you will be prompted to either login or signup. Once you log in or an account is created you will be redirected to the dashboard. There you can create a new post. After it is created you can either edit or delete the post. Navigate to the homepage and you will be met with your posts as well as posts made by other users. You can comment on their posts (be nice!).
 
 ## Credits
 
-
+I authored this with help of Wash U in Saint Louis Coding Bootcamp course, Stack Overflow, and W3Schools.
 
 ## User Story
 
