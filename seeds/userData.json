@@ -1,0 +1,20 @@
+[
+    {
+        "username": "Devin",
+        "id": 1,
+        "email": "dev@thedev.com",
+        "password": "bluebop"
+    },
+    {
+        "username": "codingstudent",
+        "id": 2,
+        "email": "newbie@coder.com",
+        "password": "greenbop"
+    },
+    {
+        "username": "codejunkie1",
+        "id": 3,
+        "email": "javaflunky@python.com",
+        "password": "redbop1"
+    }
+]

@@ -1,3 +1,4 @@
+//Async function to logout out of the application
 const logout = async () => {
   console.log("Logged Out");
   const response = await fetch('/api/users/logout', {
