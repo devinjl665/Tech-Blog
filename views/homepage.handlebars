@@ -1,5 +1,11 @@
-<div class="posts">
-    {{#each posts as |post|}}
-    {{> home-post post}}
-    {{/each}}
+<div class="text-center">
+  <h1 class="title">Blog Posts:</h1>
+  {{#each blogs as |blog|}}
+  <div>
+    <h2>
+      <a href="/blog/{{blog.id}}">{{blog.title}}</a>
+    </h2>
+    <p>Posted by {{blog.user.username}} at {{format_date blog.date_created}}</p>
+  </div>
+  {{/each}}
 </div>

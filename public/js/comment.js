@@ -1,29 +1,33 @@
-const postId = document.querySelector('input[name="post-id"]').value;
-
-const commentFormHandler = async (event) => {
+const createCommentFormHandler = async (event) => {
     event.preventDefault();
-    const comment = document.querySelector('textarea[name="comment-body"]').value.trim();
-    console.log(comment);
 
-    if (comment) {
-        const response = await fetch('/api/comment', {
-            method: 'POST',
-            body: JSON.stringify({
-                comment: comment,
-                post_id: postId,
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        if (response.ok) {
-            document.location.reload();
-        } else {
-            alert(response.statusText);
-        }
+    const textContents = document.querySelector('#commentContent');
+
+    const contents = textContents.value.trim();
+    const blogId = textContents.getAttribute('dataId');
+
+    const bodyObject = {
+        contents: contents,
+        blogId: blogId
     };
-} 
 
-if(document.querySelector('.comment-form') !=null) {  
-    document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
-}
+    if (contents) {
+        const response = await fetch('/api/blogs/comments', {
+            method: 'POST',
+            body: JSON.stringify({ bodyObject }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            document.location.replace(`/blog/${blogId}`);
+        } else {
+            alert('Failed to create a post');
+        }
+    }
+};
+
+document
+    .querySelector('.commentForm')
+    .addEventListener('submit', createCommentFormHandler);
