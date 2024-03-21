@@ -9,7 +9,7 @@ const commentData = require('./commentData.json');
 
 // Define the function to seed the database
 const seedDatabase = async () => {
-    // Sync the models with the database and force the creation if tables exist
+    // Sync the models with the database and force the creation if table exists
     await sequelize.sync({ force: true });
 
     // Create users with individual hooks enabled for password hashing
