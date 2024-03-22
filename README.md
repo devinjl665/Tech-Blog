@@ -6,11 +6,13 @@ The task is to build a CMS-style blog site similar to a Wordpress site, where de
 
 ## Demo
 
-<a href="">Tech Blog Demo Vid</a>
+<a href="https://deployed-tech-blog-8625437294f2.herokuapp.com/">Deployed Link</a>
+
+<a href="https://drive.google.com/file/d/13U3wn3WQFRhTGX04b23MIu4ER9luMZMk/view?usp=drive_link">Tech Blog Demo Vid</a>
 
 ## Installation
 
-Copy repo and enter `npm install` in your code editor's terminal to install any necessary dependencies. Run the command `npm start` to start the application locally.
+Copy repo and enter `npm install` in your code editor's terminal to install any necessary dependencies. Run the command `npm start` to start the application locally. You must have mysql, sequelize, express-handlebars, express, bcrypt, express-session, and connect-session-sequelize for this application to run properly.
 
 ## Usage
 
@@ -18,7 +20,7 @@ Once navigating to the localhost, you will be met by the homepage where you can 
 
 ## Credits
 
-I authored this with help of Wash U in Saint Louis Coding Bootcamp course, Stack Overflow, and W3Schools.
+I authored this with help of Wash U in Saint Louis Coding Bootcamp coursework, Stack Overflow, and W3Schools. This was my first time using ajax so I had to refer to their documentation for proper implementation.
 
 ## User Story
 

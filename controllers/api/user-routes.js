@@ -7,18 +7,19 @@ router.post('/', async (req, res) => {
     // Create a new user with the provided data in the request body
     const userData = await User.create(req.body);
 
-    // Save the user's session data and respond with the created user's data
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    // Save the user's session data
+    req.session.user_id = userData.id;
+    req.session.logged_in = true;
+    req.session.save();
 
-      res.status(200).json(userData);
-    });
+    // Respond with the created user's data
+    res.status(200).json(userData);
   } catch (err) {
     // Handle any errors during user creation and respond with a 400 status
-    res.status(400).json(err);
+    res.status(400).json({ message: 'Failed to create user', error: err.message });
   }
 });
+
 
 // Route to handle user login
 router.post('/login', async (req, res) => {
