@@ -1,24 +1,17 @@
-// Define an asynchronous function to handle creating comments
-const createCommentFormHandler = async (event) => {
-    event.preventDefault(); // Prevent the default form submission behavior
+const postId = document.querySelector('input[name="post-id"]').value;
 
-    // Get the textarea element for comment contents and its dataId attribute
-    const textContents = document.querySelector('#commentContent');
-    const contents = textContents.value.trim();
-    const blogId = textContents.getAttribute('dataId');
+const commentFormHandler = async (event) => {
+    event.preventDefault();
+    const comment = document.querySelector('textarea[name="comment-body"]').value.trim();
+    console.log(comment);
 
-    // Create an object with the comment contents and associated blogId
-    const bodyObject = {
-        contents: contents,
-        blogId: blogId
-    };
-
-    // Check if the comment contents exist
-    if (contents) {
-        // Send a POST request to the server to create a new comment
-        const response = await fetch('/api/blogs/comments', {
+    if (comment) {
+        const response = await fetch('/api/comment', {
             method: 'POST',
-            body: JSON.stringify({ bodyObject }), // Send the comment data in JSON format
+            body: JSON.stringify({
+                comment: comment,
+                post_id: postId,
+            }),
             headers: {
                 'Content-Type': 'application/json', // Set the content type header
             },
@@ -26,16 +19,13 @@ const createCommentFormHandler = async (event) => {
 
         // Check if the response is successful
         if (response.ok) {
-            // Redirect to the blog page after successfully creating the comment
-            document.location.replace(`/blog/${blogId}`);
+            document.location.reload();
         } else {
-            // Display an alert if creating the comment fails
-            alert('Failed to create a post');
+            alert(response.statusText);
         }
-    }
-};
+    };
+} 
 
-// Add an event listener to the comment form for form submission
-document
-    .querySelector('.commentForm')
-    .addEventListener('submit', createCommentFormHandler);
+if(document.querySelector('.comment-form') !=null) {  
+    document.querySelector('.comment-form').addEventListener('submit', commentFormHandler);
+}

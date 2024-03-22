@@ -1,8 +1,14 @@
 const router = require('express').Router();
-const userRoutes = require('./user-routes');
-const blogRoutes = require('./blog-routes');
 
-router.use('/users', userRoutes);
-router.use('/blogs', blogRoutes);
+=======
+const userRoutes = require('./user-route');
+const postRoutes = require('./post-route');
+const commentRoutes = require('./comment-route');
+
+
+router.use('/user', userRoutes);
+router.use('/post', postRoutes);
+router.use('/comment', commentRoutes);
+>>>>>>> parent of 2a717c2 (Refactoring code)
 
 module.exports = router;
