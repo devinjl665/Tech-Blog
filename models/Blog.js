@@ -15,9 +15,13 @@ Blog.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        content: {
-            type: DataTypes.TEXT,
+        contents: {
+            type: DataTypes.STRING,
+        },
+        date_created: {
+            type: DataTypes.DATE,
             allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -26,18 +30,10 @@ Blog.init(
                 key: 'id',
             },
         },
-        created_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        updated_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
     },
     {
         sequelize,
-        timestamps: false, 
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'blog',

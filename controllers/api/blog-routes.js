@@ -10,7 +10,6 @@ router.post('/', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
-
         // Respond with the newly created blog post
         res.status(200).json(newBlog);
     } catch (err) {
@@ -24,16 +23,19 @@ router.put('/update', withAuth, async (req, res) => {
     try {
         const updatedData = JSON.parse(JSON.stringify(req.body));
 
+        console.log('##############    ' + updatedData.blogObject.contents + "    ID:     " + updatedData.blogObject.blogId);
+        
         // Update the specified blog post with the updated data
         const updateBlog = await Blog.update(
-            { contents: updatedData.blogObject.contents, title: updatedData.blogObject.blogTitle },
-            { 
-                where: { id: updatedData.blogObject.blogId },
+            { contents: updatedData.blogObject.contents, title: updatedData.blogObject.blogTitle},
+            {
+                where: {
+                    id: updatedData.blogObject.Id,
+                },
             }
         );
-
         // Respond with a success message after updating the blog post
-        res.status(200).json({ message: 'Blog post updated successfully' });
+        res.status(200).json(updateBlog);
     } catch (err) {
         // Handle any errors during blog update and respond with a 400 status
         res.status(400).json(err);
@@ -52,7 +54,7 @@ router.post('/comments', withAuth, async (req, res) => {
             user_id: req.session.user_id,
         });
 
-        // Respond with the newly created comment
+         // Respond with the newly created comment
         res.status(200).json(newComment);
     } catch (err) {
         // Handle any errors during comment creation and respond with a 400 status
@@ -70,15 +72,14 @@ router.delete('/:id', withAuth, async (req, res) => {
                 user_id: req.session.user_id,
             },
         });
-
         // If no blog post is found, respond with a 404 status
         if (!blogData) {
-            res.status(404).json({ message: 'Blog not found' });
+            res.status(404).json({ message: 'No blog has been found with this id.'});
             return;
         }
         
         // Respond with a success message after deleting the blog post
-        res.status(200).json({ message: 'Blog post deleted successfully' });
+        res.status(200).json(blogData);
     } catch (err) {
         // Handle any errors during blog deletion and respond with a 500 status
         res.status(500).json(err);

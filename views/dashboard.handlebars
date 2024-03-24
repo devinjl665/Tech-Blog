@@ -1,24 +1,49 @@
-{{#if posts.length}}
-<section>
-    <div class="row align-items-center">
-        <h2>Hello, {{username}}!</h2>
-        <p>Click on your post's title to edit it</p>
-    </div>
-    <br>
-    {{#each posts as |post|}}
-    <input type="hidden" name="post-id" value="{{post.id}}"/>
-        <div class="card">
-            <div class="card-header">
-                <h4><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h4>
-            </div>  
-            <button class="btn btn-danger" id="del-post-btn"><i class="bi bi-trash"></i>Delete Post</button>                          
+<div class="text-center">
+    <h1 class="title"> Hello {{name}}.</h1>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="container col-md-1"></div>
+    <div class="container col-md-5">
+    <h2>Create a New Blog:</h2>
+
+    <form class="form-horizontal blogForm">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="blogTitle">Blog Title:</label>
+        <div class="col-sm-10">
+        <input class="form-control" type="text" id="blogTitle" name="blogTitle" />
         </div>
-    {{/each}}
-    
-</section>
-{{/if}}
-<button type="submit" class="btn"><a href="/dashboard/new"><i class="bi bi-plus-square"></i>Add New Post</a></button>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="blogContent">Content:</label>
+        <div class="col-sm-10">
+        <textarea class="form-control" id="blogContent" name="blogContent"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Post</button>
+        </div>
+      </div>
+    </form>
+    </div>
+
+    {{#if blogs.length}}
+    <div class="blogList container col-md-5">
+        <h2>Your Blogs:</h2>
+
+        {{#each blogs as |blog| }}
+        <div class="goRight">
+            <h2>
+                <span for="img" aria-label="laptop">💻</span>
+                <a href="/blog/{{blog.id}}">{{blog.title}}</a>
+                <button class="btn btn-sm btn-danger delButton inlineMe" dataId="{{blog.id}}">Delete</button>
+            </h2>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
 
 </div>
 
-<script src="/js/dashboard.js"></script>
+<script src="./js/dashboard.js"></script>
