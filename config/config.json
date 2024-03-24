@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "JoyboyG5!",
+    "database": "post_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "JoyboyG5!",
+    "database": "post_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "JoyboyG5!",
+    "database": "post_db",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
