@@ -37,7 +37,7 @@ router.put('/update', withAuth, async (req, res) => {
         // Respond with a success message after updating the blog post
         res.status(200).json(updateBlog);
     } catch (err) {
-        // Handle any errors during blog update and respond with a 400 status
+        
         res.status(400).json(err);
     }
 });
@@ -57,7 +57,7 @@ router.post('/comments', withAuth, async (req, res) => {
          // Respond with the newly created comment
         res.status(200).json(newComment);
     } catch (err) {
-        // Handle any errors during comment creation and respond with a 400 status
+        
         res.status(400).json(err);
     }
 });
@@ -81,7 +81,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         // Respond with a success message after deleting the blog post
         res.status(200).json(blogData);
     } catch (err) {
-        // Handle any errors during blog deletion and respond with a 500 status
+        
         res.status(500).json(err);
     }
 });
