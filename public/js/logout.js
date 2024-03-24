@@ -1,9 +1,9 @@
-//Async function to logout out of the application
+// Async function to logout out of the application
 const logout = async () => {
     console.log('clicked');
-    const response = await fetch('api/users/logout', {
+    const response = await fetch('/api/users/logout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json '},
+        headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
@@ -13,4 +13,5 @@ const logout = async () => {
     }
 };
 
+// Add an event listener to the logout button for click events
 document.querySelector('#logout').addEventListener('click', logout);
