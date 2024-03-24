@@ -41,7 +41,7 @@ router.get('/blog/:id', async (req, res) => {
             logged_in_userId: req.session.user_id
         });
     } catch (err) {
-        console.error(err); // Log the error for debugging purposes
+        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });
@@ -62,7 +62,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             logged_in: true
         });
     } catch (err) {
-        console.error(err); // Log the error for debugging purposes
+        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 });
