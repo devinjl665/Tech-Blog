@@ -1,4 +1,3 @@
-// Define an asynchronous function to handle creating comments
 const postCommentFormHandler = async (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
 
@@ -18,10 +17,10 @@ const postCommentFormHandler = async (event) => {
 
     // Check if the comment contents exist
     if (content) {
-        const response = await fetch (`/api/blogs/comments`, {
+        const response = await fetch(`/api/blogs/comments`, {
             method: 'POST',
-            body: JSON.stringify({ bodyObject }),
-            header: {
+            body: JSON.stringify(bodyObject), // Use bodyObject directly
+            headers: { // Correct the key to 'headers'
                 'Content-Type': 'application/json',
             },
         });
