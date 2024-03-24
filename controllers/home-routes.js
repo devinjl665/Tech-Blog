@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
             logged_in: req.session.logged_in // Pass the logged-in status to the view
         });
     } catch (err){
-        res.json(500).json(err); // Handle any errors with a JSON response
     }
 });
 
