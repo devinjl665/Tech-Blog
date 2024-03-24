@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Devin",
+        "email": "dev@thedev.com",
+        "password": "bluebop"
+    },
+    {
+        "name": "Jvon",
+        "email": "newbie@coder.com",
+        "password": "greenbop"
+    },
+    {
+        "name": "Paul",
+        "email": "javaflunky@python.com",
+        "password": "redbop12"
+    }
+]
